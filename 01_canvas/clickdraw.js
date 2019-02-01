@@ -12,11 +12,12 @@ state = true;
 shape.addEventListener('click',function(){
   state = !state
 });
+
 function makeShape(e) {
   /*
-    offsetX and offsetY provides the offset in the X or Y coordinate 
-    of the mouse pointer between that event(canvas in this case)  
-    and the padding edge of the target node 
+    offsetX and offsetY provides the offset in the X or Y coordinate
+    of the mouse pointer between that event(canvas in this case)
+    and the padding edge of the target node
   */
   var x = e.offsetX;
   var y = e.offsetY;
@@ -32,6 +33,21 @@ function makeShape(e) {
 };
 var clear = document.getElementById("clear");
 function clearCanvas(e){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-};
+  var blank = document.createElement('canvas');
+  blank.width = canvas.width;
+  blank.height = canvas.height;
+  warning = document.getElementById('warning');
+  if(canvas.toDataURL() == blank.toDataURL()){
+    /*
+    tells the user that if the event isn't handled correctly, the default action should
+    not be done. in this case, the clear function isn't activated
+    */
+    e.preventDefault();
+    warning.innerHTML = "Can't clear a blank canvas";
+  }
+  else{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    warning.innerHTML = "";
+  }
+}
 clear.addEventListener('click',clearCanvas);
