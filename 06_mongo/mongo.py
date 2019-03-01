@@ -41,4 +41,12 @@ def zipScore(zip,score):
     print(rests)
     return rests
 zipScore('10462',6)
+def rCat(cat, bor, score):
+    rests = []
+    #finds restaurants that have a certain cuisine in a certain borough with a score below what's given
+    for rest in collection.find( { "$and": [{"cuisine": cat}, {"borough": bor}, {"grades.1.score": { "$lt" : score}}]}):
+        rests.append(rest['name'])
+    print(rests)
+    return rests
+rCat("American", "Bronx", 20)
 print(collection.find_one())
