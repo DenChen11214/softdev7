@@ -36,5 +36,9 @@ def getId(name):
 #returns the name given the id of the pokemon
 def getName(id):
     return ids[id]
-print(getName(21))
-print(getId("Pikachu"))
+#returns pokemon with weakness of element
+def getWeakness(element):
+    return collection.find({'weaknesses':element})
+#print(getName(21))
+#print(getId("Pikachu"))
+print(getWeakness('asd'))
