@@ -20,7 +20,7 @@ connection = MongoClient(SERVER_ADDR)
 db = connection.YaThatWasABanana
 collection = db.pkmn
 #gets the list of all the pokemon and some of their info
-pokemon = list(collection.find())[0]['pokemon']
+pokemon = collection.find()[0]['pokemon']
 names = {}
 ids = {}
 #for each pokemon, the name and id are coupled as key-value pairs in both ways
@@ -38,7 +38,11 @@ def getName(id):
     return ids[id]
 #returns pokemon with weakness of element
 def getWeakness(element):
-    return collection.find({'weaknesses':element})
-#print(getName(21))
-#print(getId("Pikachu"))
-print(getWeakness('asd'))
+    pok = []
+    for poke in pokemon:
+        if element in poke['weaknesses']:
+            pok.append(poke['name'])
+    return pok
+print(getName(21))
+print(getId("Pikachu"))
+print(getWeakness('Fire'))
