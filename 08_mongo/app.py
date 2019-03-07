@@ -28,6 +28,37 @@ def display():
     collection.insert_many(data)
     return render_template('newpage.html')
 
+@app.route('/getSenP', methods = ["POST"])
+def senParty():
+    party = request.form['party']
+    people = get_senators_from_party(party)
+    return render_template("info.html",info = people)
+@app.route('/getSenI', methods = ["POST"])
+def senInfo():
+    name = request.form["Senator's name"]
+    info = get_senator_info(name)
+    return render_template("info.html",info = info)
+
+@app.route('/getConI', methods = ["POST"])
+def senContact():
+    name = request.form["Senator's name"]
+    contact = get_contact_info(name)
+    return render_template("info.html",info = contact)
+
+@app.route('/getSMI', methods = ["POST"])
+def senSocial():
+    name = request.form["Senator's name"]
+    info = get_social_media_info(name)
+    return render_template("info.html",info = info)
+
+@app.route('/getSenS', methods = ["POST"])
+def senState():
+    state = request.form["State"]
+    senators = get_senators_from_state(state)
+    return render_template("info.html",info = senators)
+    
+#---------------------------------------------------------------------------------
+
 def get_senators_from_party(party):
         results = collection.find({"party":party})
         print("Senators from the " + party + " party: ")
@@ -74,4 +105,4 @@ def get_senators_from_state(state):
 
 if __name__ == "__main__":
     app.debug = True
-    app.run()
+    app.run(host = "0.0.0.0")
