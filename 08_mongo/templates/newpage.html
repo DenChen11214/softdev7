@@ -3,26 +3,32 @@
   <head>
     <title> Senators </title>
   </head>
+  <h1>Questions</h1>
   <body>
-    <form action = "/getSenP">
-      <input type = "text" name = "party">
-      <button type = "submit" value = "Democrat">
+    <form action = "/getSenP" method = "post">
+      What party do you want the list of senators of?<br>
+      <input type = "text" name = "party"><br>
+      <input type = "submit" value = "Submit">
     </form>
-    <form action = "/getSenI">
-      <input type = "text" name = "Senator's Name">
-      <button type = "submit" value = "Submit">
+    <form action = "/getSenI" method = "post">
+      What senator's info do you want?<br>
+      <input type = "text" name = "name"><br>
+      <input  type = "submit" value = "Submit">
     </form>
-    <form action = "/getConI">
-      <input type = "text" name = "Senator's Name">
-      <button type = "submit" value = "Submit">
+    <form action = "/getConI" method = "post">
+      What senator's contact info do you want?<br>
+      <input type = "text" name = "name"><br>
+      <input  type = "submit" value = "Submit">
     </form>
-    <form action = "/getSMI">
-      <input type = "text" name = "Senator's Name">
-      <button type = "submit" value = "Submit">
+    <form action = "/getSMI" method = "post">
+      What senator's social media info do you want?<br>
+      <input type = "text" name = "name"><br>
+      <input  type = "submit" value = "Submit">
     </form>
-    <form action = "/getSenS">
-      <input type = "text" name = "State">
-      <button type = "submit" value = "Submit">
+    <form action = "/getSenS" method = "post">
+      What state do you want the list of senators of?<br>
+      <input type = "text" name = "State"><br>
+      <input  type = "submit" value = "Submit">
     </form>
 
   </body>

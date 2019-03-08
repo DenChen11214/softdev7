@@ -4,6 +4,8 @@
     <title> Mongo Website </title>
   </head>
   <body>
-    {info}
-  </body> 
+    {% for each in info %}
+      {{each}}<br>
+    {% endfor %}
+  </body>
 </html>
