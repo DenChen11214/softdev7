@@ -30,6 +30,11 @@
       <input type = "text" name = "State"><br>
       <input  type = "submit" value = "Submit">
     </form>
-
+    <div>
+      <h2> Results </h2>
+      {% for each in info %}
+        {{each}}<br>
+      {% endfor %}
+    </div>
   </body>
 </html>

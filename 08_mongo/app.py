@@ -31,30 +31,30 @@ def senParty():
     party = request.form['party']
     print(collection)
     people = mongo.get_senators_from_party(party)
-    return render_template("info.html",info = people)
+    return render_template("newpage.html",info = people)
 @app.route('/getSenI', methods = ["POST"])
 def senInfo():
     name = request.form["name"]
     info = mongo.get_senator_info(name)
-    return render_template("info.html",info = info)
+    return render_template("newpage.html",info = info)
 
 @app.route('/getConI', methods = ["POST"])
 def senContact():
     name = request.form["name"]
     contact = mongo.get_contact_info(name)
-    return render_template("info.html",info = contact)
+    return render_template("newpage.html",info = contact)
 
 @app.route('/getSMI', methods = ["POST"])
 def senSocial():
     name = request.form["name"]
     info = mongo.get_social_media_info(name)
-    return render_template("info.html",info = info)
+    return render_template("newpage.html",info = info)
 
 @app.route('/getSenS', methods = ["POST"])
 def senState():
     state = request.form["State"]
     senators = mongo.get_senators_from_state(state)
-    return render_template("info.html",info = senators)
+    return render_template("newpage.html",info = senators)
 
 
 
