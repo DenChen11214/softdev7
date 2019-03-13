@@ -4,30 +4,29 @@
 //3/12/19
 
 var pic = document.getElementById("vimage");
-var oldX
-var oldY
 pic.addEventListener('click', function(e){
     var x = e.offsetX;
     var y = e.offsetY;
     var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-    var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    //if this isn't the first dot, make a line between this dot and the old one
-    if(oldX){
-	path.setAttribute("d",`M ${oldX} ${oldY} L ${x} ${y} Z`)
-    }
     //sets attribute of circle
     c.setAttribute("cx",x);
     c.setAttribute("cy",y);
-    c.setAttribute("r",10);
-    c.setAttribute("fill","red");
+    c.setAttribute("r",50);
+    c.setAttribute("fill","blue");
     c.setAttribute("stroke","black");
+    c.addEventListener('click', function(e){ //move out of this event listener
+      if(c.getAttribute('fill') == "blue"){
+        c.setAttribute('fill','yellow')
+      }
+      else{
+        c.setAttribute('fill','blue')
+        c.setAttribute('cx', 12) //replace w/random
+        c.setAttribute('cy', 12)
+      }
+    }
     //adds path and dots to child nodes
     pic.appendChild(c);
-    pic.appendChild(path);
     //updates oldX and oldY
-    oldX = x;
-    oldY = y;
-    path.setAttribute("stroke","black")
 })
 var clear = document.getElementById("but_clear")
 clear.addEventListener("click", function(e){
@@ -35,7 +34,4 @@ clear.addEventListener("click", function(e){
     while (pic.hasChildNodes()) {
         pic.removeChild(pic.firstChild);
     }
-    //reset oldX and oldY
-    oldX = null
-    oldY = null
 })
