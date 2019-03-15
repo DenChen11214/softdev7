@@ -55,6 +55,8 @@ clear.addEventListener("click", function(e){
         pic.removeChild(pic.firstChild);
     }
 });
+
+var requestID;
 var move = document.getElementById("but_move");
 var moveDots = function(e) {
 
