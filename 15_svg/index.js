@@ -12,7 +12,7 @@ var x_value = function(d) { return d.Calories;},
     x_map = function(d) { return x_scale(x_value(d));},
     x_axis = d3.axisBottom(x_scale);
 
-var y_value = function(d) { return d["Protein (g)"];},
+var y_value = function(d) { return d["Fat"];},
     y_scale = d3.scaleLinear().range([height, 0]),
     y_map = function(d) { return y_scale(y_value(d));},
     y_axis = d3.axisLeft(y_scale);
@@ -24,7 +24,7 @@ var c_value = function(d) { return d.Manufacturer;},
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("height", height + margin.top + margin.bottom + 30)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -32,7 +32,7 @@ var svg = d3.select("body").append("svg")
 d3.csv("cereal.csv").then(function(data) {
   data.forEach(function(d) {
     d.Calories = +d.Calories;
-    d["Protein (g)"] = +d["Protein (g)"];
+    d["Fat"] = +d["Fat"];
   });
 
   x_scale.domain([d3.min(data, x_value)-1, d3.max(data, x_value)+1]);
@@ -44,8 +44,13 @@ d3.csv("cereal.csv").then(function(data) {
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .style("text-decoration", "underline")
-        .text("Protein vs Calories");
-
+        .text("Fat vs Calories");
+  svg.append("text")
+        .attr("x", (width / 2))
+        .attr("y", height + 40)
+        .attr("text-anchor", "middle")
+        .style("font-size", "16px")
+        .text("This scatterplot shows the relationship between fat and calories for cereals");
   // x-axis
   svg.append("g")
       .attr("class", "x axis")
@@ -70,7 +75,7 @@ d3.csv("cereal.csv").then(function(data) {
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Protein (g)");
+      .text("Fat");
 
   svg.selectAll(".dot")
       .data(data)
