@@ -8,8 +8,8 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
 
 
 var x_value = function(d) { return d.Calories;},
-    x_scale = d3.scaleLinear().range([0, width]),
-    x_map = function(d) { return x_scale(x_value(d));},
+    x_scale = d3.scaleLinear().range([0, width - 30]),
+    x_map = function(d) { return x_scale(x_value(d)) + 30;},
     x_axis = d3.axisBottom(x_scale);
 
 var y_value = function(d) { return d["Fat"];},
@@ -24,7 +24,7 @@ var c_value = function(d) { return d.Manufacturer;},
 
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom + 30)
+    .attr("height", height + margin.top + margin.bottom + 100)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -47,7 +47,7 @@ d3.csv("cereal.csv").then(function(data) {
         .text("Fat vs Calories");
   svg.append("text")
         .attr("x", (width / 2))
-        .attr("y", height + 40)
+        .attr("y", height + 80)
         .attr("text-anchor", "middle")
         .style("font-size", "16px")
         .text("This scatterplot shows the relationship between fat and calories for cereals");
@@ -55,26 +55,29 @@ d3.csv("cereal.csv").then(function(data) {
   svg.append("g")
       .attr("class", "x axis")
       .style("fill","black")
-      .attr("transform", "translate(0," + height + ")")
+      .attr("transform", "translate(30," + height + ")")
       .call(x_axis)
-    .append("text")
+  svg.append("text")
       .attr("class", "x label")
-      .attr("x", width)
-      .attr("y", -6)
-      .style("text-anchor", "end")
+      .attr("x", width / 2)
+      .attr("y", height + 40)
+      .attr("font-size","16px")
+      .style("text-anchor", "middle")
       .text("Calories");
 
   // y-axis
   svg.append("g")
       .attr("class", "y axis")
       .style("fill","black")
+      .attr("transform", "translate(30,0)")
       .call(y_axis)
-    .append("text")
-      .attr("class", "y label")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
+  svg.append("text")
+      .attr("class", "x label")
+      .attr("transform","rotate(-90)")
+      .attr("x", -height/2)
+      .attr("y", -15)
+      .attr("font-size","16px")
+      .style("text-anchor", "middle")
       .text("Fat");
 
   svg.selectAll(".dot")
