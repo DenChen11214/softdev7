@@ -1,3 +1,7 @@
+//Team Blueberry Pie:Dennis Chen & Robin Han
+//SoftDev pd7
+//K #13: Diving Deeper Into D3
+//3/19/19
 var width = 420,
     barHeight = 20;
 

@@ -1,3 +1,7 @@
+//Team Blueberry Pie:Dennis Chen & Robin Han
+//SoftDev pd7
+//K #14:Learning to Swim
+//3/20/19
 var array = [42];
 
 var selection = d3.select("body");

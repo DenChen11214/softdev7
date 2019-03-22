@@ -1,3 +1,7 @@
+//Team Blueberry Pie:Dennis Chen & Robin Han
+//SoftDev pd7
+//K #15: Scattered... or: Smothered, Covered, Chunked, Diced, Peppered, Capped, Topped & Country
+//3/21/19
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
